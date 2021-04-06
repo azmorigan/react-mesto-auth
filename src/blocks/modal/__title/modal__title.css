@@ -1,0 +1,11 @@
+.modal__title {
+  padding: 0;
+  margin: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #fff;
+  position: absolute;
+  bottom: -27px;
+  left: 0;
+}

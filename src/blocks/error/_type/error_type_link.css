@@ -1,0 +1,10 @@
+.error_type_link {
+  top: 197px;
+}
+
+@media screen and (max-width: 767px){
+  .error_type_link {
+    left: 19px;
+    top: 170px;
+  }
+}

@@ -1,0 +1,9 @@
+.header__stage {
+  align-self: flex-start;
+  margin: 6px 0 0 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  color: #fff;
+}

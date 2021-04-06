@@ -1,0 +1,9 @@
+.error_type_avatar {
+  top: 155px;
+}
+
+@media screen and (max-width: 767px) {
+  .error_type_avatar {
+    top: 125px;
+  }
+}

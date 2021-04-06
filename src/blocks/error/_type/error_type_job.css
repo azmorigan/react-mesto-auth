@@ -1,0 +1,9 @@
+.error_type_job {
+  top: 205px;
+}
+
+@media screen and (max-width: 767px){
+  .error_type_job {
+    top: 217px;
+  }
+}

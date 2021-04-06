@@ -1,0 +1,10 @@
+.element {
+  width: 282px;
+  font-size: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}

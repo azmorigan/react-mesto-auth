@@ -1,0 +1,10 @@
+.error_type_place {
+  top: 138px;
+}
+
+@media screen and (max-width: 767px){
+  .error_type_place {
+    top: 115px;
+    left: 19px;
+  }
+}

@@ -1,0 +1,6 @@
+@media screen and (max-width: 767px) {
+  .close-button_type_add-card {
+    top: -30px;
+    right: -30px;
+  }
+}

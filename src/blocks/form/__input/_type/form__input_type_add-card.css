@@ -1,0 +1,18 @@
+.form__input_type_add-card {
+  margin-bottom: 30px;
+}
+
+.form__input_type_add-card:last-of-type {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .form__input_type_add-card {
+    margin-bottom: 25px;
+  }
+
+  .form__input_type_add-card::placeholder {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}

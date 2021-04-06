@@ -1,0 +1,23 @@
+.header__logo-link {
+  display: inline-block;
+  width: 142px;
+  height: 33px;
+  background-image: url(../../../images/logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-bottom: 37px;
+  transition: opacity .5s linear;
+}
+
+.header__logo-link:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 767px) {
+  .header__logo-link {
+    width: 103px;
+    height: 24px;
+    margin-bottom: 27px;
+    margin-left: 27px;
+  }
+}

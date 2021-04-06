@@ -1,0 +1,9 @@
+.root__page {
+  max-width: 880px;
+  margin: 0 auto;
+  min-width: 320px;
+}
+
+.root__page:focus {
+  outline: none;
+}
