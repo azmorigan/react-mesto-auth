@@ -9,6 +9,8 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import ConfirmationPopup from "./ConfirmationPopup";
+import Login from "./Login";
+import Register from "./Register";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
@@ -182,14 +184,16 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="root__page" onKeyDown={handleEscClose} tabIndex={0}>
         <Header/>
-        <Main onEditProfile={handleEditProfileClick}
-              onAddPlace={handleAddPlaceClick}
-              onEditAvatar={handleEditAvatarClick}
-              onCardClick={handleCardClick}
-              cards={cards}
-              onCardLike={handleCardLike}
-              onCardDeleteClick={handleConfirmationPopup}/>
-        <Footer/>
+        {/*<Login/>*/}
+        <Register/>
+        {/*<Main onEditProfile={handleEditProfileClick}*/}
+        {/*      onAddPlace={handleAddPlaceClick}*/}
+        {/*      onEditAvatar={handleEditAvatarClick}*/}
+        {/*      onCardClick={handleCardClick}*/}
+        {/*      cards={cards}*/}
+        {/*      onCardLike={handleCardLike}*/}
+        {/*      onCardDeleteClick={handleConfirmationPopup}/>*/}
+        {/*<Footer/>*/}
 
         <ImagePopup
           onClickOnOverlay={handleClickOnOverlayClose}

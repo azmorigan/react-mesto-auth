@@ -1,17 +1,11 @@
-import Input from "./Input";
+import Enter from "./Enter";
+
 function Login(props) {
   return (
-    <div className="enter">
-      <form className="enter__form">
-        <h2 className="enter__title">Вход</h2>
-        <Input className={"enter__input"}/>
-        <Input className={"enter__input"}/>
-        <button
-          type="submit"
-          className="enter__button"/>
-      </form>
-    </div>
+    <Enter
+      title={"Вход"}
+      buttonText={"Войти"}/>
   )
 }
 
-export default Login;
+export default Login

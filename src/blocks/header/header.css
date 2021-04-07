@@ -3,7 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto 40px;
+  justify-self: center;
+  margin-bottom: 40px;
   padding-top: 45px;
   border-bottom: 1px solid rgba(84, 84, 84, .7);
 }

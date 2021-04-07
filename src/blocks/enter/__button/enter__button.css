@@ -1,0 +1,18 @@
+.enter__button {
+  padding: 14px 0 14px;
+  margin-top: 216px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  border: none;
+  transition: opacity .3s linear;
+  color: #000;
+  background-color: #fff;
+}
+
+.enter__button:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
