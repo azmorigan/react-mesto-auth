@@ -1,3 +1,10 @@
 .enter__link {
+  color: #fff;
+  text-decoration: none;
   cursor: pointer;
+  transition: opacity .3s linear;
+}
+
+.enter__link:hover {
+  opacity: .8;
 }

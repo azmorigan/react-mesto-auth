@@ -11,6 +11,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import ConfirmationPopup from "./ConfirmationPopup";
 import Login from "./Login";
 import Register from "./Register";
+import {Route, Switch, Redirect} from 'react-router-dom';
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
@@ -159,6 +160,7 @@ function App() {
       closeAllPopups()
     }
   }
+
   // Закрытие по ESC
   function handleEscClose(e) {
     if (e.key === 'Escape') {
@@ -170,6 +172,7 @@ function App() {
   const buttonNameConfirm = ({onLoad: "Удаление...", isLoad: "Да"})
   const buttonNameEdit = ({onLoad: "Сохранение...", isLoad: "Сохранить"})
   const buttonNameAddPlace = ({onLoad: "Создание...", isLoad: "Создать"})
+
   // Изменение текста кнопки
   function changeButtonName(button) {
     return isLoading ? button.onLoad : button.isLoad
@@ -180,20 +183,48 @@ function App() {
     setIsLoading(state)
   }
 
+  const [loggedIn, setLoggedIn] = React.useState(false)
+
+  const [enter, setEnter] = React.useState(true)
+  const enterTitle = enter ? "Зарегистрироваться" : "Войти"
+  function handleEnter() {
+    setEnter(!enter)
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="root__page" onKeyDown={handleEscClose} tabIndex={0}>
-        <Header/>
-        {/*<Login/>*/}
-        <Register/>
-        {/*<Main onEditProfile={handleEditProfileClick}*/}
-        {/*      onAddPlace={handleAddPlaceClick}*/}
-        {/*      onEditAvatar={handleEditAvatarClick}*/}
-        {/*      onCardClick={handleCardClick}*/}
-        {/*      cards={cards}*/}
-        {/*      onCardLike={handleCardLike}*/}
-        {/*      onCardDeleteClick={handleConfirmationPopup}/>*/}
-        {/*<Footer/>*/}
+        <Header
+          enter={enter}
+          enterTitle={enterTitle}
+          handleEnter={handleEnter}/>
+
+        <Switch>
+
+          <Route path="/sign-in">
+            <Login/>
+          </Route>
+
+          <Route path="/sign-up">
+            <Register/>
+          </Route>
+
+          <Route path="/main">
+            <Main onEditProfile={handleEditProfileClick}
+                  onAddPlace={handleAddPlaceClick}
+                  onEditAvatar={handleEditAvatarClick}
+                  onCardClick={handleCardClick}
+                  cards={cards}
+                  onCardLike={handleCardLike}
+                  onCardDeleteClick={handleConfirmationPopup}/>
+            <Footer/>
+          </Route>
+
+          <Route exact path="*">
+            {!loggedIn ? <Redirect to="/sign-in" /> : <Redirect to="/main" />}
+          </Route>
+
+        </Switch>
 
         <ImagePopup
           onClickOnOverlay={handleClickOnOverlayClose}

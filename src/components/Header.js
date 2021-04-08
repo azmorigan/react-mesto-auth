@@ -1,8 +1,15 @@
-function Header() {
+import {Link} from "react-router-dom";
+
+function Header(props) {
   return (
     <header className="header">
       <a href="#" className="header__logo-link" target="_blank"/>
-      <p className="header__stage">Войти</p>
+      <Link
+        onClick={props.handleEnter}
+        to={props.enter ? "/sign-up" : "/sign-in"}
+        className="header__stage">
+        {props.enterTitle}
+      </Link>
     </header>
   )
 }
