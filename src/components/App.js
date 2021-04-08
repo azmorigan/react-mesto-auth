@@ -12,6 +12,7 @@ import ConfirmationPopup from "./ConfirmationPopup";
 import Login from "./Login";
 import Register from "./Register";
 import {Route, Switch, Redirect} from 'react-router-dom';
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
@@ -185,9 +186,15 @@ function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false)
 
+  function handleLoggedIn() {
+    setLoggedIn(true)
+    // если true, в Header удаляем enter__stage
+  }
+
   const [enter, setEnter] = React.useState(true)
   const enterTitle = enter ? "Зарегистрироваться" : "Войти"
-  function handleEnter() {
+
+  function handleEnterTitle() {
     setEnter(!enter)
   }
 
@@ -197,7 +204,7 @@ function App() {
         <Header
           enter={enter}
           enterTitle={enterTitle}
-          handleEnter={handleEnter}/>
+          handleEnter={handleEnterTitle}/>
 
         <Switch>
 
@@ -209,19 +216,28 @@ function App() {
             <Register/>
           </Route>
 
-          <Route path="/main">
-            <Main onEditProfile={handleEditProfileClick}
-                  onAddPlace={handleAddPlaceClick}
-                  onEditAvatar={handleEditAvatarClick}
-                  onCardClick={handleCardClick}
-                  cards={cards}
-                  onCardLike={handleCardLike}
-                  onCardDeleteClick={handleConfirmationPopup}/>
-            <Footer/>
-          </Route>
+          <ProtectedRoute
+            path={"/"}
+            loggedIn={loggedIn}
+            component={Main}/>
+          <ProtectedRoute
+            path={"/"}
+            loggedIn={loggedIn}
+            component={Footer}/>
+
+          {/*<Route exact path="/">*/}
+          {/*  <Main onEditProfile={handleEditProfileClick}*/}
+          {/*        onAddPlace={handleAddPlaceClick}*/}
+          {/*        onEditAvatar={handleEditAvatarClick}*/}
+          {/*        onCardClick={handleCardClick}*/}
+          {/*        cards={cards}*/}
+          {/*        onCardLike={handleCardLike}*/}
+          {/*        onCardDeleteClick={handleConfirmationPopup}/>*/}
+          {/*  <Footer/>*/}
+          {/*</Route>*/}
 
           <Route exact path="*">
-            {!loggedIn ? <Redirect to="/sign-in" /> : <Redirect to="/main" />}
+            {loggedIn ? <Redirect to="/"/> : <Redirect to="/sign-in"/>}
           </Route>
 
         </Switch>
