@@ -13,6 +13,7 @@ import Login from "./Login";
 import Register from "./Register";
 import {Route, Switch, Redirect} from 'react-router-dom';
 import ProtectedRoute from "./ProtectedRoute";
+import InfoTooltip from "./InfoTooltip";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
@@ -219,7 +220,15 @@ function App() {
           <ProtectedRoute
             path={"/"}
             loggedIn={loggedIn}
-            component={Main}/>
+            component={Main}
+            onEditProfile={handleEditProfileClick}
+            onAddPlace={handleAddPlaceClick}
+            onEditAvatar={handleEditAvatarClick}
+            onCardClick={handleCardClick}
+            cards={cards}
+            onCardLike={handleCardLike}
+            onCardDeleteClick={handleConfirmationPopup}
+          />
           <ProtectedRoute
             path={"/"}
             loggedIn={loggedIn}
@@ -275,6 +284,8 @@ function App() {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
           buttonName={changeButtonName(buttonNameEdit)}/>
+
+          <InfoTooltip/>
       </div>
     </CurrentUserContext.Provider>
   );
