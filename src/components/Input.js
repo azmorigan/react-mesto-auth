@@ -11,7 +11,7 @@ function Input(props) {
     <input
       onChange={handleChange}
       value={props.value}
-      type="text"
+      type={props.type}
       className={props.className}
       name={props.name}
       id={props.id}

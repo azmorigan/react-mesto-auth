@@ -40,7 +40,7 @@ function AddPlacePopup(props) {
         id="input-place"
         value={place}
         onChange={handleChangePlace}
-        type="text"
+        type={"text"}
         placeholder="Название"
         className={"form__input form__input_type_add-card"}
         styleClass={"add-card"}/>
@@ -51,7 +51,7 @@ function AddPlacePopup(props) {
         id="input-link"
         value={link}
         onChange={handleChangeLink}
-        type="url"
+        type={"url"}
         placeholder="Ссылка на картинку"
         className={"form__input form__input_type_add-card"}
         styleClass={"add-card"}/>

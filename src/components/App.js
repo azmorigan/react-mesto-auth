@@ -14,6 +14,8 @@ import Register from "./Register";
 import {Route, Switch, Redirect} from 'react-router-dom';
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
+import * as auth from "../utils/auth";
+
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
@@ -38,7 +40,6 @@ function App() {
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true)
-
   }
 
   function handleAddPlaceClick() {
@@ -52,6 +53,7 @@ function App() {
     setIsAddPlacePopupOpen(false)
     setIsConfirmationPopupOpen(false)
     setSelectedCard({isOpen: false})
+    setIsInfoTooltipOpen(false)
   }
 
   // Нажать на картинку
@@ -199,6 +201,30 @@ function App() {
     setEnter(!enter)
   }
 
+  const [enterStatus, setEnterStatus] = React.useState(''
+  )
+
+  function handleRegister(email, password) {
+    auth.register(email, password)
+      .then(res => {
+        if (res) {
+          setEnterStatus(true)
+          handleInfoTooltipOpen()
+        }
+      })
+      .catch(err => {
+        setEnterStatus(false)
+        handleInfoTooltipOpen()
+      })
+  }
+
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React
+    .useState(false)
+
+  function handleInfoTooltipOpen() {
+    setIsInfoTooltipOpen(true)
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="root__page" onKeyDown={handleEscClose} tabIndex={0}>
@@ -214,7 +240,9 @@ function App() {
           </Route>
 
           <Route path="/sign-up">
-            <Register/>
+            <Register
+              handleRegister={handleRegister}
+              handleEnter={handleEnterTitle}/>
           </Route>
 
           <ProtectedRoute
@@ -251,6 +279,12 @@ function App() {
 
         </Switch>
 
+        <InfoTooltip
+          isOpen={isInfoTooltipOpen}
+          onClose={closeAllPopups}
+          onClickOnOverlay={handleClickOnOverlayClose}
+          enterStatus={enterStatus}/>
+
         <ImagePopup
           onClickOnOverlay={handleClickOnOverlayClose}
           card={selectedCard}
@@ -285,7 +319,6 @@ function App() {
           onUpdateAvatar={handleUpdateAvatar}
           buttonName={changeButtonName(buttonNameEdit)}/>
 
-          <InfoTooltip/>
       </div>
     </CurrentUserContext.Provider>
   );

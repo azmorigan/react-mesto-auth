@@ -46,7 +46,7 @@ function EditProfilePopup(props) {
         value={name}
         onChange={handleChangeName}
         className={"form__input"}
-        type="text"/>
+        type={"text"}/>
       <Input
         isOpen={props.isOpen}
         name="job"
@@ -54,7 +54,7 @@ function EditProfilePopup(props) {
         value={description}
         onChange={handleChangeDescription}
         className={"form__input"}
-        type="text"/>
+        type={"text"}/>
     </PopupWithForm>
   )
 }

@@ -33,7 +33,7 @@ function EditAvatarPopup(props) {
         id="input-avatar"
         value={avatar}
         onChange={handleChangeAvatar}
-        type="url"
+        type={"url"}
         placeholder="Ссылка на картинку"
         className={"form__input"}/>
     </PopupWithForm>
