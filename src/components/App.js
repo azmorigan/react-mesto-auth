@@ -11,7 +11,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import ConfirmationPopup from "./ConfirmationPopup";
 import Login from "./Login";
 import Register from "./Register";
-import {Route, Switch, Redirect} from 'react-router-dom';
+import {Route, Switch, Redirect, useHistory} from 'react-router-dom';
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
 import * as auth from "../utils/auth";
@@ -217,6 +217,19 @@ function App() {
         handleInfoTooltipOpen()
       })
   }
+  const history = useHistory()
+  function handleLogin(email, password) {
+    auth.authorize(email, password)
+      .then(res => {
+        localStorage.setItem('jwt', res.token)
+        setLoggedIn(true)
+        history.push('/')
+      })
+      .catch(err => {
+        setEnterStatus(false)
+        handleInfoTooltipOpen()
+      })
+  }
 
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React
     .useState(false)
@@ -236,7 +249,7 @@ function App() {
         <Switch>
 
           <Route path="/sign-in">
-            <Login/>
+            <Login handleLogin={handleLogin}/>
           </Route>
 
           <Route path="/sign-up">
@@ -257,27 +270,13 @@ function App() {
             onCardLike={handleCardLike}
             onCardDeleteClick={handleConfirmationPopup}
           />
-          <ProtectedRoute
-            path={"/"}
-            loggedIn={loggedIn}
-            component={Footer}/>
-
-          {/*<Route exact path="/">*/}
-          {/*  <Main onEditProfile={handleEditProfileClick}*/}
-          {/*        onAddPlace={handleAddPlaceClick}*/}
-          {/*        onEditAvatar={handleEditAvatarClick}*/}
-          {/*        onCardClick={handleCardClick}*/}
-          {/*        cards={cards}*/}
-          {/*        onCardLike={handleCardLike}*/}
-          {/*        onCardDeleteClick={handleConfirmationPopup}/>*/}
-          {/*  <Footer/>*/}
-          {/*</Route>*/}
 
           <Route exact path="*">
             {loggedIn ? <Redirect to="/"/> : <Redirect to="/sign-in"/>}
           </Route>
 
         </Switch>
+        {loggedIn && <Footer/>}
 
         <InfoTooltip
           isOpen={isInfoTooltipOpen}
