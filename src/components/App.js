@@ -11,7 +11,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import ConfirmationPopup from "./ConfirmationPopup";
 import Login from "./Login";
 import Register from "./Register";
-import {Route, Switch, Redirect, useHistory, Link} from 'react-router-dom';
+import {Route, Switch, Redirect, useHistory} from 'react-router-dom';
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
 import * as auth from "../utils/auth";
@@ -41,10 +41,6 @@ function App() {
 
   // Зашел ли пользователь в аккаунт
   const [loggedIn, setLoggedIn] = React.useState(false)
-
-  // Подпись в хэдере для незареганных и незалогиненных
-  const [enter, setEnter] = React.useState(true)
-  const enterTitle = enter ? "Зарегистрироваться" : "Войти"
 
   const history = useHistory()
   // Email пользователя
@@ -198,10 +194,6 @@ function App() {
     setIsLoading(state)
   }
 
-  // Изменить подпись в хэдере при нажатии на нее
-  function handleEnterTitle() {
-    setEnter(!enter)
-  }
   // Регистрация
   function handleRegister(email, password) {
     auth.register(email, password)
@@ -279,12 +271,9 @@ function App() {
       <div className="root__page" onKeyDown={handleEscClose} tabIndex={0}>
 
         <Header
-          enter={enter}
-          enterTitle={enterTitle}
-          handleEnter={handleEnterTitle}
-          loggedIn={loggedIn}
           onSignOut={handleSignOut}
-          email={email}/>
+          email={email}
+        />
 
         <Switch>
 
@@ -294,8 +283,7 @@ function App() {
 
           <Route path="/sign-up">
             <Register
-              handleRegister={handleRegister}
-              handleEnter={handleEnterTitle}/>
+              handleRegister={handleRegister}/>
           </Route>
 
           <ProtectedRoute

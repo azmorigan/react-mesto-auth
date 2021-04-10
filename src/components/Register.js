@@ -45,7 +45,6 @@ function Register(props) {
         </button>
         <p className="enter__subtitle">Уже зарегистрированы?
           <Link
-            onClick={props.handleEnter}
             to="/sign-in"
             className={"enter__link"}> Войти</Link>
         </p>

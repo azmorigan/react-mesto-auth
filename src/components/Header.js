@@ -1,23 +1,29 @@
-import {Link} from "react-router-dom";
+import {Link, Switch, Route} from "react-router-dom";
 
 function Header(props) {
   return (
     <header className="header">
       <Link to="/" className="header__logo-link"/>
-      {props.loggedIn
-        ? <>
-          <p className="header__email">{props.email}</p>
-          <a
-            className="header__stage header__stage_logout"
-            onClick={props.onSignOut}>Выйти</a>
-        </>
-        : <Link
-          onClick={props.handleEnter}
-          to={props.enter ? "/sign-up" : "/sign-in"}
-          className="header__stage">
-          {props.loggedIn ? '' : props.enterTitle}
-        </Link>
-      }
+      <Switch>
+        <Route exact path='/'>
+            <p className='header__email'>{props.email}</p>
+            <button
+              className='header__stage header__stage_logout'
+              onClick={props.onSignOut}>
+              Выйти
+            </button>
+        </Route>
+        <Route path='/sign-up'>
+          <Link className='header__stage' to='/sign-in'>
+            Войти
+          </Link>
+        </Route>
+        <Route path='/sign-in'>
+          <Link className='header__stage' to='/sign-up'>
+            Регистрация
+          </Link>
+        </Route>
+      </Switch>
     </header>
   )
 }
