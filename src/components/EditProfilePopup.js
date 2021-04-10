@@ -40,7 +40,6 @@ function EditProfilePopup(props) {
       onSubmit={handleSubmit}
       buttonName={props.buttonName}>
       <Input
-        isOpen={props.isOpen}
         name="name"
         id="input-name"
         value={name}
@@ -48,7 +47,6 @@ function EditProfilePopup(props) {
         className={"form__input"}
         type={"text"}/>
       <Input
-        isOpen={props.isOpen}
         name="job"
         id="input-job"
         value={description}

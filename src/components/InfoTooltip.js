@@ -16,8 +16,8 @@ function InfoTooltip(props) {
       <p
         className="popup__answer">
         {props.enterStatus
-          ? "Вы успешно зарегистрировались!"
-          : "Что-то пошло не так! Попробуйте ещё раз."}
+          ? props.text.success
+          : props.text.fail}
       </p>
     </Popup>
   )

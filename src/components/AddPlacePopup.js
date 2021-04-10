@@ -35,26 +35,22 @@ function AddPlacePopup(props) {
       buttonName={props.buttonName}>
 
       <Input
-        isOpen={props.isOpen}
         name="place"
         id="input-place"
         value={place}
         onChange={handleChangePlace}
         type={"text"}
         placeholder="Название"
-        className={"form__input form__input_type_add-card"}
-        styleClass={"add-card"}/>
+        className={"form__input form__input_type_add-card"}/>
 
       <Input
-        isOpen={props.isOpen}
         name="link"
         id="input-link"
         value={link}
         onChange={handleChangeLink}
         type={"url"}
         placeholder="Ссылка на картинку"
-        className={"form__input form__input_type_add-card"}
-        styleClass={"add-card"}/>
+        className={"form__input form__input_type_add-card"}/>
 
     </PopupWithForm>
   )

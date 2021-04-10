@@ -10,12 +10,7 @@ function Input(props) {
     <>
     <input
       onChange={handleChange}
-      value={props.value}
-      type={props.type}
-      className={props.className}
-      name={props.name}
-      id={props.id}
-      placeholder={props.placeholder}
+      {...props}
     />
   <span id={`${props.id}-error`} className={`error error_type_${props.name}`}></span>
     </>

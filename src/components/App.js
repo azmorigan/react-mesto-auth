@@ -11,7 +11,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import ConfirmationPopup from "./ConfirmationPopup";
 import Login from "./Login";
 import Register from "./Register";
-import {Route, Switch, Redirect, useHistory} from 'react-router-dom';
+import {Route, Switch, Redirect, useHistory, Link} from 'react-router-dom';
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
 import * as auth from "../utils/auth";
@@ -58,6 +58,11 @@ function App() {
   // Пробрасывается в InfoTooltip и открывает соотв. попап
   const [enterStatus, setEnterStatus] = React.useState(''
   )
+  // Текст для всплывающей подсказки
+  const infoTooltipText = {
+    success: "Вы успешно зарегистрировались!",
+    fail: "Что-то пошло не так! Попробуйте ещё раз."
+  }
   // Открыть попапы
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true)
@@ -204,6 +209,7 @@ function App() {
         if (res) {
           setEnterStatus(true)
           handleInfoTooltipOpen()
+          history.push('/sign-in')
         }
       })
       .catch(err => {
@@ -240,7 +246,7 @@ function App() {
     }
   }
 
-  function logOut() {
+  function handleSignOut() {
     localStorage.removeItem('jwt')
     setEmail('')
     history.push('/sign-in')
@@ -271,12 +277,13 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="root__page" onKeyDown={handleEscClose} tabIndex={0}>
+
         <Header
           enter={enter}
           enterTitle={enterTitle}
           handleEnter={handleEnterTitle}
           loggedIn={loggedIn}
-          onSignOut={logOut}
+          onSignOut={handleSignOut}
           email={email}/>
 
         <Switch>
@@ -315,7 +322,8 @@ function App() {
           isOpen={isInfoTooltipOpen}
           onClose={closeAllPopups}
           onClickOnOverlay={handleClickOnOverlayClose}
-          enterStatus={enterStatus}/>
+          enterStatus={enterStatus}
+          text={infoTooltipText}/>
 
         <ImagePopup
           onClickOnOverlay={handleClickOnOverlayClose}

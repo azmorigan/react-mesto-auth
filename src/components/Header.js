@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 function Header(props) {
   return (
     <header className="header">
-      <a href="#" className="header__logo-link" target="_blank"/>
+      <Link to="/" className="header__logo-link"/>
       {props.loggedIn
         ? <>
           <p className="header__email">{props.email}</p>

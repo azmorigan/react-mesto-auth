@@ -27,11 +27,7 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({email, password})
   })
-    .then(data => {
-      return data.json()
-    })
-    .then(res => res)
-  // checkResponse не работает
+    .then(res => checkResponse(res))
 }
 
 export const checkToken = (token) => {
@@ -42,6 +38,5 @@ export const checkToken = (token) => {
       'Authorization': `Bearer ${token}`,
     }
   })
-    .then(res => res.json())
-    .then(data => data)
+    .then(res => checkResponse(res))
 }
