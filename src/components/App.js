@@ -16,7 +16,6 @@ import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
 import * as auth from "../utils/auth";
 
-
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false)
@@ -191,7 +190,6 @@ function App() {
 
   function handleLoggedIn() {
     setLoggedIn(true)
-    // если true, в Header удаляем enter__stage
   }
 
   const [enter, setEnter] = React.useState(true)
@@ -217,7 +215,9 @@ function App() {
         handleInfoTooltipOpen()
       })
   }
+
   const history = useHistory()
+
   function handleLogin(email, password) {
     auth.authorize(email, password)
       .then(res => {
@@ -230,6 +230,21 @@ function App() {
         handleInfoTooltipOpen()
       })
   }
+
+  function handleTokenCheck() {
+    if (localStorage.getItem('jwt')) {
+      const jwt = localStorage.getItem('jwt')
+      auth.checkToken(jwt)
+        .then(res => {
+          setLoggedIn(true)
+          history.push('/')
+        })
+        .catch(err=>console.log(err))
+    }
+  }
+  React.useEffect(() => {
+    handleTokenCheck()
+  }, [])
 
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React
     .useState(false)
@@ -244,7 +259,8 @@ function App() {
         <Header
           enter={enter}
           enterTitle={enterTitle}
-          handleEnter={handleEnterTitle}/>
+          handleEnter={handleEnterTitle}
+          loggedIn={loggedIn}/>
 
         <Switch>
 
@@ -271,7 +287,7 @@ function App() {
             onCardDeleteClick={handleConfirmationPopup}
           />
 
-          <Route exact path="*">
+          <Route>
             {loggedIn ? <Redirect to="/"/> : <Redirect to="/sign-in"/>}
           </Route>
 

@@ -1,3 +1,11 @@
+function checkResponse(data) {
+  if (data.ok) {
+    return data.json()
+  } else {
+    return Promise.reject(data.status)
+  }
+}
+
 export const BASE_URL = "https://auth.nomoreparties.co"
 
 export const register = (email, password) => {
@@ -26,11 +34,14 @@ export const authorize = (email, password) => {
   // checkResponse не работает
 }
 
-
-function checkResponse(data) {
-    if (data.ok) {
-      return data.json()
-    } else {
-      return Promise.reject(data.status)
+export const checkToken = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
     }
+  })
+    .then(res => res.json())
+    .then(data => data)
 }
