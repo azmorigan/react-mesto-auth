@@ -188,10 +188,6 @@ function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false)
 
-  function handleLoggedIn() {
-    setLoggedIn(true)
-  }
-
   const [enter, setEnter] = React.useState(true)
   const enterTitle = enter ? "Зарегистрироваться" : "Войти"
 
@@ -217,12 +213,14 @@ function App() {
   }
 
   const history = useHistory()
+  const [email, setEmail] = React.useState('')
 
   function handleLogin(email, password) {
     auth.authorize(email, password)
       .then(res => {
         localStorage.setItem('jwt', res.token)
         setLoggedIn(true)
+        setEmail(email)
         history.push('/')
       })
       .catch(err => {
@@ -237,11 +235,13 @@ function App() {
       auth.checkToken(jwt)
         .then(res => {
           setLoggedIn(true)
+          setEmail(res.data.email)
           history.push('/')
         })
-        .catch(err=>console.log(err))
+        .catch(err => console.log(err))
     }
   }
+
   React.useEffect(() => {
     handleTokenCheck()
   }, [])
@@ -253,6 +253,13 @@ function App() {
     setIsInfoTooltipOpen(true)
   }
 
+  function logOut() {
+    localStorage.removeItem('jwt')
+    setEmail('')
+    history.push('/sign-in')
+    setLoggedIn(false)
+  }
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="root__page" onKeyDown={handleEscClose} tabIndex={0}>
@@ -260,7 +267,9 @@ function App() {
           enter={enter}
           enterTitle={enterTitle}
           handleEnter={handleEnterTitle}
-          loggedIn={loggedIn}/>
+          loggedIn={loggedIn}
+          onSignOut={logOut}
+          email={email}/>
 
         <Switch>
 
