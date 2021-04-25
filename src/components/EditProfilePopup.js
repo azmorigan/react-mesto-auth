@@ -7,14 +7,18 @@ function EditProfilePopup(props) {
 
   const [name, setName] = React.useState('')
   const [description, setDescription] = React.useState('')
+  const [nameError, setNameError] = React.useState('')
+  const [descriptionError, setDescriptionError] = React.useState('')
   const currentUser = React.useContext(CurrentUserContext)
 
   function handleChangeName(e) {
     setName(e.target.value)
+    setNameError(e.target.validationMessage)
   }
 
   function handleChangeDescription(e) {
     setDescription(e.target.value)
+    setDescriptionError(e.target.validationMessage)
   }
 
   function handleSubmit(e) {
@@ -28,6 +32,8 @@ function EditProfilePopup(props) {
   React.useEffect(() => {
     setName(currentUser.name)
     setDescription(currentUser.about)
+    setNameError('')
+    setDescriptionError('')
   }, [props.isOpen, currentUser.name, currentUser.about])
 
   return (
@@ -45,14 +51,20 @@ function EditProfilePopup(props) {
         value={name}
         onChange={handleChangeName}
         className={"form__input"}
-        type={"text"}/>
+        type={"text"}
+        minLength={2}
+        maxLength={30}
+        error={nameError}/>
       <Input
         name="job"
         id="input-job"
         value={description}
         onChange={handleChangeDescription}
         className={"form__input"}
-        type={"text"}/>
+        type={"text"}
+        minLength={2}
+        maxLength={50}
+        error={descriptionError}/>
     </PopupWithForm>
   )
 }

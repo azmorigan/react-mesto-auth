@@ -8,11 +8,12 @@ function Input(props) {
 
   return (
     <>
-    <input
-      onChange={handleChange}
-      {...props}
-    />
-  <span id={`${props.id}-error`} className={`error error_type_${props.name}`}></span>
+      <input
+        onChange={handleChange}
+        required
+        {...props}
+      />
+      {props.error && <span id={`${props.id}-error`} className={`error error_type_${props.name}`}>{props.error}</span>}
     </>
   )
 }

@@ -106,7 +106,7 @@ function App() {
         }
       )
       .catch(err => console.log(err))
-      .finally(res => {
+      .finally(() => {
         renderLoading(false)
       })
   }
@@ -120,7 +120,7 @@ function App() {
         closeAllPopups()
       })
       .catch(err => console.log(err))
-      .finally(res => {
+      .finally(() => {
         renderLoading(false)
       })
   }
@@ -134,7 +134,7 @@ function App() {
         closeAllPopups()
       })
       .catch(err => console.log(err))
-      .finally(res => {
+      .finally(() => {
         renderLoading(false)
       })
   }
@@ -158,13 +158,13 @@ function App() {
   function handleCardDelete(cardId) {
     renderLoading(true)
     api.deleteCard(cardId)
-      .then(res => {
+      .then(() => {
         const newCards = cards.filter(oldCard => oldCard._id !== cardId)
         setCards(newCards)
         closeAllPopups()
       })
       .catch(err => console.log(err))
-      .finally(res => {
+      .finally(() => {
         renderLoading(false)
       })
   }
@@ -204,7 +204,7 @@ function App() {
           history.push('/sign-in')
         }
       })
-      .catch(err => {
+      .catch(() => {
         setEnterStatus(false)
         handleInfoTooltipOpen()
       })
@@ -219,7 +219,7 @@ function App() {
         setEmail(email)
         history.push('/')
       })
-      .catch(err => {
+      .catch(() => {
         setEnterStatus(false)
         handleInfoTooltipOpen()
       })
@@ -237,7 +237,7 @@ function App() {
         .catch(err => console.log(err))
     }
   }
-
+  // Выйти из аккаунта
   function handleSignOut() {
     localStorage.removeItem('jwt')
     setEmail('')

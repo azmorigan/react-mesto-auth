@@ -4,9 +4,11 @@ import Input from "./Input";
 
 function EditAvatarPopup(props) {
   const [avatar, setAvatar] = React.useState('')
+  const [avatarError, setAvatarError] = React.useState('')
 
   function handleChangeAvatar(e) {
     setAvatar(e.target.value)
+    setAvatarError(e.target.validationMessage)
   }
 
   function handleSubmit(e) {
@@ -16,6 +18,7 @@ function EditAvatarPopup(props) {
 
   React.useEffect(() => {
     setAvatar('')
+    setAvatarError('')
   }, [props.isOpen])
 
   return (
@@ -34,7 +37,8 @@ function EditAvatarPopup(props) {
         onChange={handleChangeAvatar}
         type={"url"}
         placeholder="Ссылка на картинку"
-        className={"form__input"}/>
+        className={"form__input"}
+        error={avatarError}/>
     </PopupWithForm>
   )
 }
