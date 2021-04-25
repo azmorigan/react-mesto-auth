@@ -37,7 +37,7 @@ function EditAvatarPopup(props) {
         onChange={handleChangeAvatar}
         type={"url"}
         placeholder="Ссылка на картинку"
-        className={"form__input"}
+        className={`form__input ${avatarError && 'form__input_state_invalid'}`}
         error={avatarError}/>
     </PopupWithForm>
   )

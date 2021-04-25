@@ -50,7 +50,7 @@ function EditProfilePopup(props) {
         id="input-name"
         value={name}
         onChange={handleChangeName}
-        className={"form__input"}
+        className={`form__input ${nameError && 'form__input_state_invalid'}`}
         type={"text"}
         minLength={2}
         maxLength={30}
@@ -60,7 +60,7 @@ function EditProfilePopup(props) {
         id="input-job"
         value={description}
         onChange={handleChangeDescription}
-        className={"form__input"}
+        className={`form__input ${descriptionError && 'form__input_state_invalid'}`}
         type={"text"}
         minLength={2}
         maxLength={50}

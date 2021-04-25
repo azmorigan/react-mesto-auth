@@ -7,6 +7,7 @@ function AddPlacePopup(props) {
   const [link, setLink] = React.useState('')
   const [placeError, setPlaceError] = React.useState('')
   const [linkError, setLinkError] = React.useState('')
+  const [isValid, setIsValid] = React.useState('false')
 
   function handleChangePlace(e) {
     setPlace(e.target.value)
@@ -19,6 +20,9 @@ function AddPlacePopup(props) {
   }
 
   function handleSubmit(e) {
+    if (e.target.checkValidity()) {
+      setIsValid(true)
+    }
     e.preventDefault()
     props.onAddPlace({name: place, link})
   }
@@ -38,7 +42,8 @@ function AddPlacePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
-      buttonName={props.buttonName}>
+      buttonName={props.buttonName}
+      isValid={isValid}>
 
       <Input
         name="place"
@@ -47,7 +52,7 @@ function AddPlacePopup(props) {
         onChange={handleChangePlace}
         type={"text"}
         placeholder="Название"
-        className={"form__input form__input_type_add-card"}
+        className={`form__input form__input_type_add-card ${placeError && 'form__input_state_invalid'}`}
         error={placeError}
         minLength={2}
         maxLength={30}/>
@@ -59,7 +64,7 @@ function AddPlacePopup(props) {
         onChange={handleChangeLink}
         type={"url"}
         placeholder="Ссылка на картинку"
-        className={"form__input form__input_type_add-card"}
+        className={`form__input form__input_type_add-card ${linkError && 'form__input_state_invalid'}`}
         error={linkError}/>
 
     </PopupWithForm>

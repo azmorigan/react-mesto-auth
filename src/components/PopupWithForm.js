@@ -11,8 +11,9 @@ function PopupWithForm(props) {
         noValidate>
         {props.children}
         <button
+          disabled={!props.isValid}
           type="submit"
-          className={`form__button form__button_type_${props.name}`}
+          className={`form__button form__button_type_${props.name} ${!props.isValid && "form__button_disabled"}`}
         >{props.buttonName}</button>
       </form>
     </Popup>
