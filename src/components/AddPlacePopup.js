@@ -7,7 +7,6 @@ function AddPlacePopup(props) {
   const [link, setLink] = React.useState('')
   const [placeError, setPlaceError] = React.useState('')
   const [linkError, setLinkError] = React.useState('')
-  const [isValid, setIsValid] = React.useState('false')
 
   function handleChangePlace(e) {
     setPlace(e.target.value)
@@ -20,9 +19,6 @@ function AddPlacePopup(props) {
   }
 
   function handleSubmit(e) {
-    if (e.target.checkValidity()) {
-      setIsValid(true)
-    }
     e.preventDefault()
     props.onAddPlace({name: place, link})
   }
@@ -42,8 +38,7 @@ function AddPlacePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
-      buttonName={props.buttonName}
-      isValid={isValid}>
+      buttonName={props.buttonName}>
 
       <Input
         name="place"
