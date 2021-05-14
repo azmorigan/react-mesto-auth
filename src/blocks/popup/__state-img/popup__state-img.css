@@ -1,3 +1,9 @@
 .popup__state-img {
   margin-bottom: 32px;
 }
+
+@media screen and (max-width: 767px){
+  .popup__state-img {
+    margin-bottom: 40px;
+  }
+}
