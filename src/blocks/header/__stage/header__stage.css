@@ -9,3 +9,11 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+@media screen and (max-width: 767px) {
+  .header__stage {
+    font-size: 14px;
+    line-height: 17px;
+    margin-right: 27px;
+  }
+}
