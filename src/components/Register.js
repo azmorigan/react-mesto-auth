@@ -5,13 +5,17 @@ import React from 'react';
 function Register(props) {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
+  const [emailError, setEmailError] = React.useState('')
+  const [passwordError, setPasswordError] = React.useState('')
 
   function handleChangeEmail(e) {
     setEmail(e.target.value)
+    setEmailError(e.target.validationMessage)
   }
 
   function handleChangePassword(e) {
     setPassword(e.target.value)
+    setPasswordError(e.target.validationMessage)
   }
 
   function handleSubmit(e) {
@@ -30,14 +34,17 @@ function Register(props) {
           name={"email"}
           className={"enter__input"}
           placeholder={"Email"}
-          type={"email"}/>
+          type={"email"}
+          error={emailError}/>
         <Input
           value={password}
           onChange={handleChangePassword}
           name={"password"}
           className={"enter__input"}
           placeholder={"Пароль"}
-          type={"password"}/>
+          type={"password"}
+          error={passwordError}
+          minLength={6}/>
         <button
           type="submit"
           className="enter__button">

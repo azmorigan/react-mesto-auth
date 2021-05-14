@@ -60,6 +60,8 @@
 @import url(./blocks/error/_type/error_type_place.css);
 @import url(./blocks/error/_type/error_type_link.css);
 @import url(./blocks/error/_type/error_type_avatar.css);
+@import url(./blocks/error/_type/error_type_email.css);
+@import url(./blocks/error/_type/error_type_password.css);
 @import url(blocks/form/__input/_type/form__input_type_add-card.css);
 @import url(./blocks/form/__input/_state/form__input_state_invalid.css);
 @import url(./blocks/form/__button/form__button.css);

@@ -2,6 +2,7 @@
   color: #a9a9a9;
   background-color: #000;
   border: none;
+  margin-bottom: 37px;
 }
 
 .header__stage_logout:focus {

@@ -1,0 +1,17 @@
+.error_type_email {
+  top: 115px;
+  left: 1px;
+}
+
+@media screen and (max-width: 767px) {
+  .error_type_email {
+    top: 115px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .error_type_email {
+    width: 100%;
+    top: 100px;
+  }
+}
