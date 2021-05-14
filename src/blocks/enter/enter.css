@@ -1,7 +1,12 @@
 .enter {
-  min-height: 565px;
   justify-self: center;
   width: 358px;
   background-color: #000;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 425px) {
+  .enter {
+    width: 81.25%;
+  }
 }
