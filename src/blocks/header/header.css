@@ -1,10 +1,13 @@
 .header {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr max-content max-content;
+  grid-template-rows: 1fr;
+  column-gap: 24px;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
   padding-top: 45px;
+  padding-bottom: 41px;
   border-bottom: 1px solid rgba(84, 84, 84, .7);
 }
 
@@ -18,7 +21,16 @@
 @media screen and (max-width: 767px) {
   .header {
     width: 100%;
-    padding-top: 28px;
+    padding: 28px 0 31px;
     margin-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 425px){
+  .header {
+    padding-top: 0;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, minmax(min-content, max-content));
+    column-gap: 0;
   }
 }

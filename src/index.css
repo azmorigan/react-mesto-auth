@@ -9,7 +9,11 @@
 @import url(./blocks/header/__logo-link/header__logo-link.css);
 @import url(./blocks/header/__stage/header__stage.css);
 @import url(./blocks/header/__stage/_logout/header__stage_logout.css);
+@import url(./blocks/header/__stage/_visible/header__stage_visible.css);
 @import url(./blocks/header/__email/header__email.css);
+@import url(./blocks/header/__email/_visible/header__email_visible.css);
+@import url(./blocks/header/__burger/header__burger.css);
+@import url(./blocks/header/__burger/_close/header__burger_close.css);
 
 @import url(./blocks/content/content.css);
 @import url(./blocks/profile/profile.css);

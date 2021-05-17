@@ -5,7 +5,7 @@
   background-image: url(../../../images/logo.svg);
   background-size: contain;
   background-repeat: no-repeat;
-  margin-bottom: 37px;
+  margin: 0;
   transition: opacity .5s linear;
 }
 
@@ -15,9 +15,14 @@
 
 @media screen and (max-width: 767px) {
   .header__logo-link {
+    margin-left: 30px;
     width: 103px;
     height: 24px;
-    margin-bottom: 27px;
-    margin-left: 27px;
+  }
+}
+
+@media screen and (max-width: 425px){
+  .header__logo-link {
+    margin-top: 27px;
   }
 }
