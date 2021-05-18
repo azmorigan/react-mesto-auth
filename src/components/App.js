@@ -214,7 +214,7 @@ function App() {
   function handleLogin(email, password) {
     auth.authorize(email, password)
       .then(res => {
-        localStorage.setItem('jwt', res.token)
+        localStorage.setItem('jwt', res.jwt)
         setLoggedIn(true)
         setEmail(email)
         history.push('/')
@@ -231,7 +231,7 @@ function App() {
       auth.checkToken(jwt)
         .then(res => {
           setLoggedIn(true)
-          setEmail(res.data.email)
+          setEmail(res.email)
           history.push('/')
         })
         .catch(err => console.log(err))
@@ -244,6 +244,11 @@ function App() {
     history.push('/sign-in')
     setLoggedIn(false)
   }
+
+  // Проверка токена при отрисовке App
+  React.useEffect(() => {
+    handleTokenCheck()
+  }, [])
 
   // Загрузить и отрисовать карточки
   React.useEffect(() => {
@@ -259,11 +264,6 @@ function App() {
     api.getProfileInfo()
       .then(res => setCurrentUser(res))
       .catch(err => err.status)
-  }, [])
-
-  // Проверка токена при отрисовке App
-  React.useEffect(() => {
-    handleTokenCheck()
   }, [])
 
   return (
