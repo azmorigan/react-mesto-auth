@@ -15,13 +15,14 @@ function Card(props) {
   // Клик на лайк
   function handleLikeClick() {
     props.onCardLike(props)
+    console.log(currentUser);
+    console.log(props);
   }
 
   const currentUser = React.useContext(CurrentUserContext)
-  const isOwn = currentUser._id === props.owner._id ? props.owner._id : props.owner
+  const isOwn = currentUser._id === (props.owner._id ? props.owner._id : props.owner)
   const cardDeleteButtonClassName =
     `element__remove ${isOwn && 'element__remove_visible'}`
-
   const isLiked = props.likes.some(i => {
     return i === currentUser._id
   })

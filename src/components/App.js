@@ -156,8 +156,9 @@ function App() {
 
   // Удаление карточки
   function handleCardDelete(cardId) {
+    console.log(cardId);
     renderLoading(true)
-    api.deleteCard(cardId)
+    api.deleteCard(cardId, localStorage.getItem('jwt'))
       .then(() => {
         const newCards = cards.filter(oldCard => oldCard._id !== cardId)
         setCards(newCards)
@@ -257,14 +258,14 @@ function App() {
         setCards(cardList)
       })
       .catch(err => err.status)
-  }, [])
+  }, [loggedIn])
 
   // Загрузить и установить данные профиля
   React.useEffect(() => {
     api.getProfileInfo(localStorage.getItem('jwt'))
       .then(res => setCurrentUser(res))
       .catch(err => err.status)
-  }, [])
+  }, [loggedIn])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

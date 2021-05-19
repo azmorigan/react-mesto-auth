@@ -51,10 +51,13 @@ class Api {
       .then(this._checkResponse)
   }
 
-  deleteCard(data) {
+  deleteCard(data, token) {
     return fetch(this._url + 'cards/' + data, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
     })
       .then(this._checkResponse)
   }
