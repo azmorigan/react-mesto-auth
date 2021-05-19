@@ -144,8 +144,8 @@ function App() {
     // card - карточка, которую отправляем через PUT
     // newCard - лайкнутая карточка с обновленным массивом likes
     // oldCard - любая карточка из старого массива
-    const isLiked = card.likes.some(i => i._id === currentUser._id)
-    api.toggleLikeCard(card.id, !isLiked)
+    const isLiked = card.likes.some(i => i === currentUser._id)
+    api.toggleLikeCard(card.id, !isLiked, localStorage.getItem('jwt'))
       .then((newCard) => {
         const newCards = cards.map((oldCard) => {
           return oldCard._id === card.id ? newCard : oldCard

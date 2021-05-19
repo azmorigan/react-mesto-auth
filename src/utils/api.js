@@ -59,27 +59,33 @@ class Api {
       .then(this._checkResponse)
   }
 
-  setLike(cardId) {
-    return fetch(`${this._url}cards/likes/${cardId}`, {
+  setLike(cardId, token) {
+    return fetch(`${this._url}cards/${cardId}/likes`, {
       method: "PUT",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._checkResponse)
   }
 
-  removeLike(cardId) {
-    return fetch(`${this._url}cards/likes/${cardId}`, {
+  removeLike(cardId, token) {
+    return fetch(`${this._url}cards/${cardId}/likes`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._checkResponse)
   }
 
-  toggleLikeCard(cardId, isLiked) {
+  toggleLikeCard(cardId, isLiked, token) {
     if (isLiked) {
-      return this.setLike(cardId)
+      return this.setLike(cardId, token)
     } else {
-      return this.removeLike(cardId)
+      return this.removeLike(cardId, token)
     }
   }
 

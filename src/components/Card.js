@@ -23,7 +23,7 @@ function Card(props) {
     `element__remove ${isOwn && 'element__remove_visible'}`
 
   const isLiked = props.likes.some(i => {
-    return i._id === currentUser._id
+    return i === currentUser._id
   })
 
   const cardLikeButtonClassName = `element__like ${isLiked && 'element__like_active'}`
