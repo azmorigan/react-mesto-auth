@@ -16,7 +16,8 @@ function ConfirmationPopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
-      buttonName={props.buttonName}>
+      buttonName={props.buttonName}
+      isInput={true}>
     </PopupWithForm>
   )
 }

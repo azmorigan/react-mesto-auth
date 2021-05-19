@@ -5,6 +5,7 @@ function PopupWithForm(props) {
 
   const [isValid, setIsValid] = React.useState(false)
   const formRef = React.useRef()
+
   return (
     <Popup {...props}>
       <h2 className={`popup__title popup__title_type_${props.name}`}>{props.title}</h2>
@@ -17,7 +18,7 @@ function PopupWithForm(props) {
         noValidate>
         {props.children}
         <button
-          disabled={!isValid}
+          // disabled={!isValid}
           type="submit"
           className={`form__button form__button_type_${props.name} ${!isValid && "form__button_disabled"}`}
         >{props.buttonName}</button>

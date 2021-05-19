@@ -4,16 +4,22 @@ class Api {
     this._headers = headers
   }
 
-  getInitialCards() {
+  getInitialCards(token) {
     return fetch(this._url + 'cards/', {
-      headers: this._headers
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._checkResponse)
   }
 
-  getProfileInfo() {
+  getProfileInfo(token) {
     return fetch(this._url + 'users/me/', {
-      headers: this._headers
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      }
     })
       .then(this._checkResponse)
   }
@@ -30,10 +36,13 @@ class Api {
       .then(this._checkResponse)
   }
 
-  addCard(data) {
+  addCard(data, token) {
     return fetch(this._url + 'cards/', {
       method: "POST",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         name: data.name,
         link: data.link

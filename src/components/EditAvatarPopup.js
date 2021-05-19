@@ -29,7 +29,8 @@ function EditAvatarPopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
-      buttonName={props.buttonName}>
+      buttonName={props.buttonName}
+      isInput={false}>
       <Input
         name="avatar"
         id="input-avatar"

@@ -128,8 +128,9 @@ function App() {
   // Добавление карточки
   function handleAddPlace(data) {
     renderLoading(true)
-    api.addCard(data)
+    api.addCard(data, localStorage.getItem('jwt'))
       .then(newCard => {
+        console.log(newCard)
         setCards([newCard, ...cards])
         closeAllPopups()
       })
@@ -252,7 +253,7 @@ function App() {
 
   // Загрузить и отрисовать карточки
   React.useEffect(() => {
-    api.getInitialCards()
+    api.getInitialCards(localStorage.getItem('jwt'))
       .then((cardList) => {
         setCards(cardList)
       })
@@ -261,7 +262,7 @@ function App() {
 
   // Загрузить и установить данные профиля
   React.useEffect(() => {
-    api.getProfileInfo()
+    api.getProfileInfo(localStorage.getItem('jwt'))
       .then(res => setCurrentUser(res))
       .catch(err => err.status)
   }, [])

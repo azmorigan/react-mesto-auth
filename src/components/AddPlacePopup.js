@@ -38,8 +38,8 @@ function AddPlacePopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
-      buttonName={props.buttonName}>
-
+      buttonName={props.buttonName}
+      isInput={false}>
       <Input
         name="place"
         id="input-place"
@@ -51,7 +51,6 @@ function AddPlacePopup(props) {
         error={placeError}
         minLength={2}
         maxLength={30}/>
-
       <Input
         name="link"
         id="input-link"

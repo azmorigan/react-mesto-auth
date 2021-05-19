@@ -18,18 +18,20 @@ function Card(props) {
   }
 
   const currentUser = React.useContext(CurrentUserContext)
-  const isOwn = currentUser._id === props.owner._id
+  const isOwn = currentUser._id === props.owner._id ? props.owner._id : props.owner
   const cardDeleteButtonClassName =
     `element__remove ${isOwn && 'element__remove_visible'}`
 
   const isLiked = props.likes.some(i => {
     return i._id === currentUser._id
   })
+
   const cardLikeButtonClassName = `element__like ${isLiked && 'element__like_active'}`
 
   function openConfirmPopupAndGetDeleteCardId() {
     props.onCardDeleteClick(props.id)
   }
+
   return (
     <li className="element">
       <img
