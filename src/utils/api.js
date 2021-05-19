@@ -5,7 +5,7 @@ class Api {
   }
 
   getInitialCards(token) {
-    return fetch(this._url + 'cards/', {
+    return fetch(this._url + '/cards/', {
       headers: {
         authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ class Api {
   }
 
   getProfileInfo(token) {
-    return fetch(this._url + 'users/me/', {
+    return fetch(this._url + '/users/me/', {
       headers: {
         authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ class Api {
   }
 
   setProfileInfo(name, job) {
-    return fetch(this._url + 'users/me/', {
+    return fetch(this._url + '/users/me/', {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -37,7 +37,7 @@ class Api {
   }
 
   addCard(data, token) {
-    return fetch(this._url + 'cards/', {
+    return fetch(this._url + '/cards/', {
       method: "POST",
       headers: {
         authorization: `Bearer ${token}`,
@@ -52,7 +52,7 @@ class Api {
   }
 
   deleteCard(data, token) {
-    return fetch(this._url + 'cards/' + data, {
+    return fetch(this._url + '/cards/' + data, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${token}`,
@@ -63,7 +63,7 @@ class Api {
   }
 
   setLike(cardId, token) {
-    return fetch(`${this._url}cards/${cardId}/likes`, {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${token}`,
@@ -74,7 +74,7 @@ class Api {
   }
 
   removeLike(cardId, token) {
-    return fetch(`${this._url}cards/${cardId}/likes`, {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${token}`,
@@ -93,7 +93,7 @@ class Api {
   }
 
   setUserAvatar(imageUrl) {
-    return fetch(this._url + 'users/me/avatar', {
+    return fetch(this._url + '/users/me/avatar', {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -112,7 +112,7 @@ class Api {
 }
 
 export const api = new Api({
-  url: "http://mesto-back.azmorigan.nomoredomains.club/",
+  url: "http://mesto-back.azmorigan.nomoredomains.club",
   headers: {
     authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json',

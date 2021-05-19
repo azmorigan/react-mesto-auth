@@ -156,7 +156,6 @@ function App() {
 
   // Удаление карточки
   function handleCardDelete(cardId) {
-    console.log(cardId);
     renderLoading(true)
     api.deleteCard(cardId, localStorage.getItem('jwt'))
       .then(() => {

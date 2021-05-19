@@ -15,8 +15,6 @@ function Card(props) {
   // Клик на лайк
   function handleLikeClick() {
     props.onCardLike(props)
-    console.log(currentUser);
-    console.log(props);
   }
 
   const currentUser = React.useContext(CurrentUserContext)
