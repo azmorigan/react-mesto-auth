@@ -109,12 +109,9 @@ class Api {
 }
 
 export const api = new Api({
-  url: "http://localhost:3001/",
+  url: "http://mesto-back.azmorigan.nomoredomains.club/",
   headers: {
     authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json',
   }
 })
-
-// https://mesto.nomoreparties.co/v1/cohort-20/
-// mesto-back.azmorigan.nomoredomains.club/

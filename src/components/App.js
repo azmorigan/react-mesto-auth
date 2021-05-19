@@ -130,7 +130,6 @@ function App() {
     renderLoading(true)
     api.addCard(data, localStorage.getItem('jwt'))
       .then(newCard => {
-        console.log(newCard)
         setCards([newCard, ...cards])
         closeAllPopups()
       })
@@ -247,9 +246,9 @@ function App() {
   }
 
   // Проверка токена при отрисовке App
-  React.useEffect(() => {
-    handleTokenCheck()
-  }, [])
+    React.useEffect(() => {
+      handleTokenCheck()
+    }, [])
 
   // Загрузить и отрисовать карточки
   React.useEffect(() => {
