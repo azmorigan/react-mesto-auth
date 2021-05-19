@@ -1,7 +1,6 @@
 class Api {
-  constructor({url, headers}) {
+  constructor({url}) {
     this._url = url
-    this._headers = headers
   }
 
   getInitialCards(token) {
@@ -24,10 +23,13 @@ class Api {
       .then(this._checkResponse)
   }
 
-  setProfileInfo(name, job) {
+  setProfileInfo(name, job, token) {
     return fetch(this._url + '/users/me/', {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         name: name,
         about: job
@@ -92,10 +94,13 @@ class Api {
     }
   }
 
-  setUserAvatar(imageUrl) {
+  setUserAvatar(imageUrl, token) {
     return fetch(this._url + '/users/me/avatar', {
       method: "PATCH",
-      headers: this._headers,
+      headers: {
+        authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         avatar: imageUrl
       })
@@ -112,9 +117,5 @@ class Api {
 }
 
 export const api = new Api({
-  url: "http://mesto-back.azmorigan.nomoredomains.club",
-  headers: {
-    authorization: `Bearer ${localStorage.getItem('jwt')}`,
-    'Content-Type': 'application/json',
-  }
+  url: "https://mesto-back.azmorigan.nomoredomains.club",
 })

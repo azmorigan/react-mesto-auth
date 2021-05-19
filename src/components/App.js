@@ -99,7 +99,7 @@ function App() {
   // Обновление имени и описания профиля
   function handleUpdateUser({name, about}) {
     renderLoading(true)
-    api.setProfileInfo(name, about)
+    api.setProfileInfo(name, about, localStorage.getItem('jwt'))
       .then(res => {
           setCurrentUser(res)
           closeAllPopups()
@@ -114,7 +114,7 @@ function App() {
   // Обновление аватара
   function handleUpdateAvatar({avatar}) {
     renderLoading(true)
-    api.setUserAvatar(avatar)
+    api.setUserAvatar(avatar, localStorage.getItem('jwt'))
       .then(res => {
         setCurrentUser(res)
         closeAllPopups()

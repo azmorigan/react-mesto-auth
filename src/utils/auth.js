@@ -6,7 +6,7 @@ function checkResponse(data) {
   }
 }
 
-export const BASE_URL = "http://mesto-back.azmorigan.nomoredomains.club"
+export const BASE_URL = "https://mesto-back.azmorigan.nomoredomains.club"
 
 export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
