@@ -5,7 +5,9 @@ function PopupWithForm(props) {
 
   const [isValid, setIsValid] = React.useState(false)
   const formRef = React.useRef()
-
+  React.useEffect(() => {
+    setIsValid(false)
+  }, [props.isOpen])
   return (
     <Popup {...props}>
       <h2 className={`popup__title popup__title_type_${props.name}`}>{props.title}</h2>
